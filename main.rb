@@ -11,10 +11,15 @@ get '/' do
 end
 
 post '/new_game' do
-	puts params.inspect
+	if params[:game]== "no"
+		erb :no_game
+	else
+		erb :new_player
+	end
 end
 
 get '/new_player' do
+	puts params.inspect
 	if params.include?(:username)
 		redirect ('/welcome_player')
 	else
