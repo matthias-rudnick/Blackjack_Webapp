@@ -18,15 +18,14 @@ post '/new_game' do
 	end
 end
 
-get '/new_player' do
-	puts params.inspect
-	if params.include?(:username)
-		redirect ('/welcome_player')
-	else
-		erb :new_player
-	end
+get ('/new_player') do
+	erb :new_player
 end
 
 post '/new_player' do
-	erb :welcome_player
+	if params[:username].empty?
+		redirect '/new_player'
+	else
+		erb :new_game
+	end
 end
